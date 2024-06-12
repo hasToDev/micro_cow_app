@@ -1,0 +1,7 @@
+query GetCowExistence(
+    $cowName: String!,
+) {
+    getCowExistence (
+        cowName: $cowName,
+    )
+}

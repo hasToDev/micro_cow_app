@@ -1,0 +1,7 @@
+query GetOneLocalDbCow(
+    $cowKey: String!,
+) {
+    getOneLocalDbCow (
+        cowKey: $cowKey,
+    )
+}

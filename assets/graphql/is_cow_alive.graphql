@@ -1,0 +1,9 @@
+query IsCowAlive(
+    $cowName: String!,
+    $systemTime: Timestamp!,
+) {
+    isCowAlive (
+        cowName: $cowName,
+        systemTime: $systemTime,
+    )
+}

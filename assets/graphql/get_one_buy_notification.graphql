@@ -1,0 +1,6 @@
+query {
+    getOneBuyNotification {
+        cowName
+        isSuccess
+    }
+}

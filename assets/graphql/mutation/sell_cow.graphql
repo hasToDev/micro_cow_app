@@ -1,0 +1,11 @@
+mutation SellCow(
+    $owner: Owner!,
+    $cowName: String!,
+    $cowBornTime: Timestamp!,
+) {
+    sellCow (
+        owner: $owner,
+        cowName: $cowName,
+        cowBornTime: $cowBornTime,
+    )
+}

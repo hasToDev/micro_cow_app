@@ -1,0 +1,9 @@
+mutation FeedCow(
+    $owner: Owner!,
+    $cowName: String!,
+) {
+    feedCow (
+        owner: $owner,
+        cowName: $cowName,
+    )
+}

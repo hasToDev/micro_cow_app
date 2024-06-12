@@ -1,0 +1,13 @@
+mutation BuyCow(
+    $owner: Owner!,
+    $cowName: String!,
+    $cowId: String!,
+    $cowBreed: CowBreed!,
+) {
+    buyCow (
+        owner: $owner,
+        cowName: $cowName,
+        cowId: $cowId,
+        cowBreed: $cowBreed,
+    )
+}

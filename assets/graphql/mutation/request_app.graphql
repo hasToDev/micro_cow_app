@@ -1,0 +1,11 @@
+mutation RequestApplication(
+    $targetChainId: ChainId!,
+    $applicationId: ApplicationId!,
+    $chainId: ChainId!,
+) {
+    requestApplication (
+        targetChainId: $targetChainId,
+        applicationId: $applicationId,
+        chainId: $chainId,
+    )
+}

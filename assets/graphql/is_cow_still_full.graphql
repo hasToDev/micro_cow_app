@@ -1,0 +1,9 @@
+query IsCowStillFull(
+    $cowName: String!,
+    $systemTime: Timestamp!,
+) {
+    isCowStillFull (
+        cowName: $cowName,
+        systemTime: $systemTime,
+    )
+}

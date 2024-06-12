@@ -1,0 +1,7 @@
+query GetCowSellValue(
+    $cowName: String!,
+) {
+    getCowSellValue (
+        cowName: $cowName,
+    )
+}

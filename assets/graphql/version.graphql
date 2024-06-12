@@ -1,0 +1,10 @@
+query {
+    version {
+        crateVersion
+        graphqlHash
+        gitDirty
+        gitCommit
+        rpcHash
+        witHash
+    }
+}

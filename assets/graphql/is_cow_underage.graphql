@@ -1,0 +1,9 @@
+query IsCowUnderage(
+    $cowBornTime: Timestamp!,
+    $systemTime: Timestamp!,
+) {
+    isCowUnderage (
+        cowBornTime: $cowBornTime,
+        systemTime: $systemTime,
+    )
+}
