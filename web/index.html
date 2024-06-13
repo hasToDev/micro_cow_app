@@ -14,8 +14,9 @@
       This is a placeholder for base href that will be replaced by the value of
       the `--base-href` argument provided to `flutter build`.
     -->
-    <!-- base href should disabled when deploying web app to GitHub pages -->
+    <!-- base href should be disabled when deploying web app to GitHub pages -->
     <!--  <base href="$FLUTTER_BASE_HREF">-->
+    <base href="/">
 
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -43,6 +44,21 @@
             background-color: #FFEFEB;
         }
 
+        .loader-text {
+            color: #FF2A00;
+            height: 90px;
+            width: 220px;
+            font-size: 20px;
+            text-align: center;
+            /* center CSS box */
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: fixed;
+        }
+
         .loader {
             width: 220px;
             height: 10px;
@@ -58,20 +74,6 @@
             position: fixed;
         }
 
-        .loader-text {
-            color: #FF2A00;
-            height: 90px;
-            width: 160px;
-            font-size: 20px;
-            text-align: center;
-            /* center CSS box */
-            margin: auto;
-            left: 0;
-            right: 0;
-            top: 35px;
-            bottom: 0;
-            position: fixed;
-        }
 
         .loader::before {
             content: "";
