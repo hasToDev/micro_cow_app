@@ -412,7 +412,7 @@ class _SettingPageState extends State<SettingPage> {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                                   child: Text(
-                                    'Chain ID:',
+                                    'Player Chain ID:',
                                     style: context.style.bodyLarge?.copyWith(
                                       color: Colors.purple,
                                       fontWeight: FontWeight.bold,
