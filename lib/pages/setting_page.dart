@@ -208,7 +208,7 @@ class _SettingPageState extends State<SettingPage> {
                             ),
                             // ? Application ID
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 12.0),
+                              padding: const EdgeInsets.symmetric(vertical: 12.0),
                               child: Text(
                                 'Application ID:',
                                 style: context.style.bodyLarge?.copyWith(
@@ -278,7 +278,7 @@ class _SettingPageState extends State<SettingPage> {
                             ),
                             // ? GraphQL Service Address
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 12.0),
+                              padding: const EdgeInsets.symmetric(vertical: 12.0),
                               child: Text(
                                 'GraphQL service address:',
                                 style: context.style.bodyLarge?.copyWith(
