@@ -16,6 +16,8 @@ export 'helpers/helpers.dart';
 export 'widgets/widgets.dart';
 
 const String storedChainID = 'lineraChainID';
+const String storedRootChainID = 'lineraRootChainID';
+const String storedApplicationID = 'lineraApplicationID';
 const String storedGraphQLServiceAddress = 'lineraGraphQLService';
 const Duration graphQLConnectionTimeout = Duration(seconds: 60);
 

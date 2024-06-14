@@ -15,6 +15,8 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   late TextEditingController addressController;
+  late TextEditingController rootChainIDController;
+  late TextEditingController applicationIDController;
 
   ValueNotifier<bool> validServiceAddress = ValueNotifier<bool>(false);
   ValueNotifier<bool> checkingAddress = ValueNotifier<bool>(false);
@@ -29,11 +31,15 @@ class _SettingPageState extends State<SettingPage> {
   void initState() {
     super.initState();
     addressController = TextEditingController();
+    rootChainIDController = TextEditingController();
+    applicationIDController = TextEditingController();
   }
 
   @override
   void dispose() {
     addressController.dispose();
+    rootChainIDController.dispose();
+    applicationIDController.dispose();
     validServiceAddress.dispose();
     checkingAddress.dispose();
     super.dispose();
@@ -44,6 +50,8 @@ class _SettingPageState extends State<SettingPage> {
     if (!tryLoadFromProvider) {
       // try load service address
       addressController.text = context.read<CowProvider>().graphQLServiceAddress;
+      rootChainIDController.text = context.read<CowProvider>().cowRootChainID;
+      applicationIDController.text = context.read<CowProvider>().cowApplicationID;
 
       // try fetch and load chain id
       String storageChainID = context.read<CowProvider>().lineraChainID;
@@ -127,6 +135,148 @@ class _SettingPageState extends State<SettingPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // ? Root Chain ID
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Text(
+                                'Root Chain ID:',
+                                style: context.style.bodyLarge?.copyWith(
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: containerSize - 24,
+                              child: TextFormField(
+                                controller: rootChainIDController,
+                                cursorHeight: 20.0,
+                                cursorColor: const Color.fromRGBO(185, 102, 185, 1),
+                                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                      color: const Color.fromRGBO(185, 102, 185, 1),
+                                      fontWeight: FontWeight.normal,
+                                      letterSpacing: 0.6,
+                                    ),
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  isDense: false,
+                                  contentPadding: const EdgeInsets.only(
+                                    top: 18.0,
+                                    bottom: 18.0,
+                                    left: 14.0,
+                                    right: 14.0,
+                                  ),
+                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                  labelText:
+                                      'fill this with Chain ID that deploy the Micro Cow contract',
+                                  labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                                        color: const Color.fromRGBO(185, 102, 185, 1),
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1.0,
+                                      ),
+                                  errorStyle: const TextStyle(
+                                    height: 0.0,
+                                    fontSize: 0.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    gapPadding: 6.0,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromRGBO(185, 102, 185, 1),
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    gapPadding: 6.0,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromRGBO(185, 102, 185, 1),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    gapPadding: 6.0,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromRGBO(185, 102, 185, 1),
+                                    ),
+                                  ),
+                                ),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp("[a-z0-9]")),
+                                ],
+                              ),
+                            ),
+                            // ? Application ID
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Text(
+                                'Application ID:',
+                                style: context.style.bodyLarge?.copyWith(
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: containerSize - 24,
+                              child: TextFormField(
+                                controller: applicationIDController,
+                                cursorHeight: 20.0,
+                                cursorColor: const Color.fromRGBO(185, 102, 185, 1),
+                                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                      color: const Color.fromRGBO(185, 102, 185, 1),
+                                      fontWeight: FontWeight.normal,
+                                      letterSpacing: 0.6,
+                                    ),
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  isDense: false,
+                                  contentPadding: const EdgeInsets.only(
+                                    top: 18.0,
+                                    bottom: 18.0,
+                                    left: 14.0,
+                                    right: 14.0,
+                                  ),
+                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                  labelText: 'fill this with the deployed Micro Cow Application ID',
+                                  labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                                        color: const Color.fromRGBO(185, 102, 185, 1),
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1.0,
+                                      ),
+                                  errorStyle: const TextStyle(
+                                    height: 0.0,
+                                    fontSize: 0.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    gapPadding: 6.0,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromRGBO(185, 102, 185, 1),
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    gapPadding: 6.0,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromRGBO(185, 102, 185, 1),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    gapPadding: 6.0,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromRGBO(185, 102, 185, 1),
+                                    ),
+                                  ),
+                                ),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(RegExp("[a-z0-9]")),
+                                ],
+                              ),
+                            ),
+                            // ? GraphQL Service Address
                             Padding(
                               padding: const EdgeInsets.only(bottom: 12.0),
                               child: Text(
@@ -254,6 +404,7 @@ class _SettingPageState extends State<SettingPage> {
                                 ),
                               ],
                             ),
+                            // ? CHAIN ID
                             ValueListenableBuilder(
                               valueListenable: validServiceAddress,
                               builder: (context, validAddress, _) {
@@ -366,9 +517,12 @@ class _SettingPageState extends State<SettingPage> {
                               }
 
                               // Save settings to provider
-                              context
-                                  .read<CowProvider>()
-                                  .saveGraphQLAddressAndChainID(serviceURI, selectedChainID);
+                              context.read<CowProvider>().saveGraphQLAddressAndChainID(
+                                    serviceURI,
+                                    selectedChainID,
+                                    rootChainIDController.text,
+                                    applicationIDController.text,
+                                  );
 
                               // Save settings to storage.
                               final SharedPreferences prefs = await SharedPreferences.getInstance();

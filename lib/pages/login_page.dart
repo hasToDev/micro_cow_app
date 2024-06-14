@@ -37,11 +37,10 @@ class _LoginPageState extends State<LoginPage> {
           if (!mounted) return;
           String chainID = prefs.getString(storedChainID) ?? '';
           String serviceURI = prefs.getString(storedGraphQLServiceAddress) ?? '';
-          bool allSettingsExist = chainID.isNotEmpty && serviceURI.isNotEmpty;
-
-          if (allSettingsExist) {
-            context.read<CowProvider>().saveGraphQLAddressAndChainID(serviceURI, chainID);
-          }
+          String microCowRootChainID = prefs.getString(storedRootChainID) ?? rootChainID;
+          String microCowApplicationID = prefs.getString(storedApplicationID) ?? applicationID;
+          context.read<CowProvider>().saveGraphQLAddressAndChainID(
+              serviceURI, chainID, microCowRootChainID, microCowApplicationID);
         }
       }
     }
@@ -128,6 +127,16 @@ class _LoginPageState extends State<LoginPage> {
                           if (settingIsEmpty) {
                             DialogHelper.failures(
                                 context, 'go to Wallet Setting to setup your wallet first.');
+                            loading = false;
+                            return;
+                          }
+
+                          bool rootChainAndAppIDIsEmpty =
+                              context.read<CowProvider>().cowRootChainID.isEmpty &&
+                                  context.read<CowProvider>().cowApplicationID.isEmpty;
+                          if (rootChainAndAppIDIsEmpty) {
+                            DialogHelper.failures(
+                                context, 'go to Wallet Setting to setup root chain & AppID first.');
                             loading = false;
                             return;
                           }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:micro_cow_app/main.dart';
 import 'linera_response_parser.dart';
@@ -29,6 +30,8 @@ class GraphQLService {
 
       if (result.hasException) {
         String err = _errorHandling(result.exception!);
+        // TODO: DELETE THIS
+        print('performQuery:\n$err');
         if (err.contains(errNode) && err.contains(errRegister)) err = "app not registered";
         if (err.contains('Local node operation failed')) err = "Local node operation failed";
         if (err.contains('HandshakeException')) err = "unable to connect";
@@ -67,6 +70,8 @@ class GraphQLService {
 
       if (result.hasException) {
         String err = _errorHandling(result.exception!);
+        // TODO: DELETE THIS
+        print('performMutation:\n$err');
         if (err.contains(errNode) && err.contains(errRegister)) err = "app not registered";
         if (err.contains('Local node operation failed')) err = "Local node operation failed";
         if (err.contains('HandshakeException')) err = "unable to connect";

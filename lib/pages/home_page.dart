@@ -38,11 +38,10 @@ class _HomePageState extends State<HomePage> {
           if (!mounted) return;
           String chainID = prefs.getString(storedChainID) ?? '';
           String serviceURI = prefs.getString(storedGraphQLServiceAddress) ?? '';
-          bool allSettingsExist = chainID.isNotEmpty && serviceURI.isNotEmpty;
-
-          if (allSettingsExist) {
-            context.read<CowProvider>().saveGraphQLAddressAndChainID(serviceURI, chainID);
-          }
+          String microCowRootChainID = prefs.getString(storedRootChainID) ?? rootChainID;
+          String microCowApplicationID = prefs.getString(storedApplicationID) ?? applicationID;
+          context.read<CowProvider>().saveGraphQLAddressAndChainID(
+              serviceURI, chainID, microCowRootChainID, microCowApplicationID);
         }
 
         // check login state
