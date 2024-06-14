@@ -44,33 +44,27 @@ the [Micro Cow Linera repository](https://github.com/hasToDev/micro_cow_linera).
 The Micro Cow web app in this repository was developed
 using `Flutter version 3.22.2` and `Dart version 3.4.3`
 
-## Clone, Run, Build, and Deploy
+## Clone, Run, Build
 
 1. Clone the repository:
-    ```shell
+    ```dart
     git clone https://github.com/hasToDev/micro_cow_app.git
     ```
 
-2. If you wish to deploy your own smart contract version, make sure to change
-   the `rootChainID` and `applicationID`in
-   the [`micro_cow_contract.dart`](lib/contracts/micro_cow_contract.dart) file with the one
-   you receive from the **Linera CLI** during deployment.
-
-
-3. Install all the project dependencies:
-    ```dart
-    flutter pub get
-    ```
-4. Run on local browser (**web-port** is optional between 0-65535):
-    ```dart
-    flutter run --web-renderer canvaskit -d web-server --web-port 45454
-    ```
-5. Generate the release build for **Micro Cow** Web app:
-    ```dart
-    flutter clean
-    flutter pub get
-    flutter build web --web-renderer canvaskit --release
-    ```
+2. Install all the project dependencies:
+   ```dart
+   flutter pub get
+   ```
+3. Run on local browser (**web-port** is optional between 0-65535):
+   ```dart
+   flutter run --web-renderer canvaskit -d web-server --web-port 45454
+   ```
+4. Generate the release build for **Micro Cow** Web app:
+   ```dart
+   flutter clean
+   flutter pub get
+   flutter build web --web-renderer canvaskit --release
+   ```
 
 ## How to Play
 
@@ -82,20 +76,21 @@ terminal.
 2. on Setting page, enter the **GraphQL service address** (it is advisable to use http://127.0.0.1:8080 instead
    of http://localhost:8080), then click **check** button.
 3. If your **GraphQL service address** is valid, you will see the list of **ChainID** that you can use to play **Micro
-   Cow**,
-   choose one of them, then click **confirm**.
-4. Now you can start **Login** to play the game.
-5. Web app will automatically request Micro Cow application, if it doesn't exist in your chain.
-6. Web app will also initialize your account with **10000 LINERA token** if this is the first time you play the game.
-7. This whole initial process could take up to 40 seconds, give or take.
-8. You can Buy your cow at the market using **LINERA token** in your balance.
-9. When buying the cow, choose your Cow name wisely because the name is unique
-   in **Micro Cow** . The cow gender will be assigned randomly by the smart
-   contract.
-10. Feed cow every 6 hours intervals. If you don't feed the cow within 24 hours, the cow will die.
-11. After your cow reaches 3 days of age, you can start selling it back to the market.
-12. Of course, you can choose to keep feeding the cow. As the cow grows, the price increases (or decreases).
-13. The feeding interval plays an essential role in increasing or decreasing your
+   Cow**, choose one of them.
+4. Don't forget to enter **Application ID** (that you received after deploy the smart contract) and **Root Chain ID**
+   (the **ChainID** that you use to deploy the smart contract).
+5. click **confirm** on Setting page, after finish fill out all the required fields.
+6. Now you can start **Login** to play the game.
+7. Web app will automatically request Micro Cow application, if it doesn't exist in your chain.
+8. Web app will also initialize your account with **10000 LINERA token** if this is the first time you play the game.
+9. This whole initial process could take up to 40 seconds, give or take.
+10. You can Buy your cow at the market using **LINERA token** in your balance.
+11. When buying the cow, choose your Cow name wisely because the name is unique
+    in **Micro Cow**. The cow gender will be assigned randomly by the smart contract.
+12. Feed cow every 6 hours intervals. If you don't feed the cow within 24 hours, the cow will die.
+13. After your cow reaches 3 days of age, you can start selling it back to the market.
+14. Of course, you can choose to keep feeding the cow. As the cow grows, the price increases (or decreases).
+15. The feeding interval plays an essential role in increasing or decreasing your
     cow's value. As a rule, always feed your cow no more than 18 hours after its
     last meal.
 
