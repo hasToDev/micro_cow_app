@@ -31,17 +31,17 @@ class _HomePageState extends State<HomePage> {
       if (kIsWeb || Platform.isWindows) {
         // try load storage
         bool firstLoad = context.read<CowProvider>().graphQLServiceAddress.isEmpty &&
-            context.read<CowProvider>().lineraPlayerChainID.isEmpty;
+            context.read<CowProvider>().microCowPlayerChainID.isEmpty;
 
         if (firstLoad) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           if (!mounted) return;
-          String chainID = prefs.getString(storedChainID) ?? '';
-          String serviceURI = prefs.getString(storedGraphQLServiceAddress) ?? '';
-          String microCowRootChainID = prefs.getString(storedRootChainID) ?? rootChainID;
-          String microCowApplicationID = prefs.getString(storedApplicationID) ?? applicationID;
+          String loadedChainID = prefs.getString(storedChainID) ?? '';
+          String loadedServiceURI = prefs.getString(storedGraphQLServiceAddress) ?? '';
+          String loadedRootChainID = prefs.getString(storedRootChainID) ?? '';
+          String loadedApplicationID = prefs.getString(storedApplicationID) ?? '';
           context.read<CowProvider>().saveGraphQLAddressAndChainID(
-              serviceURI, chainID, microCowRootChainID, microCowApplicationID);
+              loadedServiceURI, loadedChainID, loadedRootChainID, loadedApplicationID);
         }
 
         // check login state

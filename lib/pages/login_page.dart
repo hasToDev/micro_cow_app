@@ -30,17 +30,17 @@ class _LoginPageState extends State<LoginPage> {
       if (kIsWeb || Platform.isWindows) {
         // try load storage
         bool firstLoad = context.read<CowProvider>().graphQLServiceAddress.isEmpty &&
-            context.read<CowProvider>().lineraPlayerChainID.isEmpty;
+            context.read<CowProvider>().microCowPlayerChainID.isEmpty;
 
         if (firstLoad) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           if (!mounted) return;
-          String chainID = prefs.getString(storedChainID) ?? '';
-          String serviceURI = prefs.getString(storedGraphQLServiceAddress) ?? '';
-          String microCowRootChainID = prefs.getString(storedRootChainID) ?? rootChainID;
-          String microCowApplicationID = prefs.getString(storedApplicationID) ?? applicationID;
+          String loadedChainID = prefs.getString(storedChainID) ?? '';
+          String loadedServiceURI = prefs.getString(storedGraphQLServiceAddress) ?? '';
+          String loadedRootChainID = prefs.getString(storedRootChainID) ?? '';
+          String loadedApplicationID = prefs.getString(storedApplicationID) ?? '';
           context.read<CowProvider>().saveGraphQLAddressAndChainID(
-              serviceURI, chainID, microCowRootChainID, microCowApplicationID);
+              loadedServiceURI, loadedChainID, loadedRootChainID, loadedApplicationID);
         }
       }
     }
@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
 
                           bool settingIsEmpty =
                               context.read<CowProvider>().graphQLServiceAddress.isEmpty &&
-                                  context.read<CowProvider>().lineraPlayerChainID.isEmpty;
+                                  context.read<CowProvider>().microCowPlayerChainID.isEmpty;
                           if (settingIsEmpty) {
                             DialogHelper.failures(
                                 context, 'go to Wallet Setting to setup your wallet first.');
@@ -132,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                           }
 
                           bool rootChainAndAppIDIsEmpty =
-                              context.read<CowProvider>().cowRootChainID.isEmpty &&
-                                  context.read<CowProvider>().cowApplicationID.isEmpty;
+                              context.read<CowProvider>().microCowRootChainID.isEmpty &&
+                                  context.read<CowProvider>().microCowApplicationID.isEmpty;
                           if (rootChainAndAppIDIsEmpty) {
                             DialogHelper.failures(
                                 context, 'go to Wallet Setting to setup root chain & AppID first.');
@@ -248,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // * Find Chain ID Index
       Chains c = Chains.fromJson(result!.data!['chains']);
-      String lineraChainID = context.read<CowProvider>().lineraPlayerChainID;
+      String lineraChainID = context.read<CowProvider>().microCowPlayerChainID;
       int indexOfChainID = c.list.indexOf(lineraChainID);
 
       // * return if Chain ID not found
@@ -387,9 +387,9 @@ class _LoginPageState extends State<LoginPage> {
     if (!context.mounted) return "context not mounted";
 
     Map<String, dynamic> variables = {
-      'targetChainId': context.read<CowProvider>().cowRootChainID,
-      'applicationId': context.read<CowProvider>().cowApplicationID,
-      'chainId': context.read<CowProvider>().lineraPlayerChainID,
+      'targetChainId': context.read<CowProvider>().microCowRootChainID,
+      'applicationId': context.read<CowProvider>().microCowApplicationID,
+      'chainId': context.read<CowProvider>().microCowPlayerChainID,
     };
 
     // * mutation to request app from root chain
@@ -511,7 +511,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _handleError(BuildContext context, String error) async {
     String err = error;
-    if (err.length > 100) err = error.substring(0, 100);
+    if (err.length > 200) err = error.substring(0, 200);
     if (context.mounted) Navigator.pop(context);
     await Future.delayed(const Duration(milliseconds: 100));
     if (context.mounted) DialogHelper.failures(context, err);

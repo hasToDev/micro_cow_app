@@ -50,11 +50,11 @@ class _SettingPageState extends State<SettingPage> {
     if (!tryLoadFromProvider) {
       // try load service address
       addressController.text = context.read<CowProvider>().graphQLServiceAddress;
-      rootChainIDController.text = context.read<CowProvider>().cowRootChainID;
-      applicationIDController.text = context.read<CowProvider>().cowApplicationID;
+      rootChainIDController.text = context.read<CowProvider>().microCowRootChainID;
+      applicationIDController.text = context.read<CowProvider>().microCowApplicationID;
 
       // try fetch and load chain id
-      String storageChainID = context.read<CowProvider>().lineraPlayerChainID;
+      String storageChainID = context.read<CowProvider>().microCowPlayerChainID;
       if (storageChainID.isNotEmpty) {
         await checkOnInitState(context, addressController.text, storageChainID);
       }
@@ -638,7 +638,7 @@ class _SettingPageState extends State<SettingPage> {
       // * Return if Address Invalid
       if (error != null) {
         String err = error;
-        if (err.length > 100) err = error.substring(0, 100);
+        if (err.length > 200) err = error.substring(0, 200);
         DialogHelper.failures(context, err);
         checkingAddress.value = false;
         validServiceAddress.value = false;

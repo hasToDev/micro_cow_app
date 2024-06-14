@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../../contracts/micro_cow_contract.dart';
 import '../network/graphql_model/get_my_cows.dart';
 import '../network/graphql_service.dart';
 
@@ -12,9 +11,9 @@ class CowProvider extends ChangeNotifier {
   GraphQLClient? appClient;
 
   String graphQLServiceAddress = '';
-  String lineraPlayerChainID = '';
-  String cowRootChainID = '';
-  String cowApplicationID = '';
+  String microCowPlayerChainID = '';
+  String microCowRootChainID = '';
+  String microCowApplicationID = '';
   String lineraOwner = '';
 
   List<CowData> cows = [];
@@ -34,20 +33,20 @@ class CowProvider extends ChangeNotifier {
 
   void setupGraphQLAppClient() {
     String uri =
-        '$graphQLServiceAddress/chains/$lineraPlayerChainID/applications/$cowApplicationID';
+        '$graphQLServiceAddress/chains/$microCowPlayerChainID/applications/$microCowApplicationID';
     appClient = GraphQLService.createGraphQlClient(uri);
   }
 
   void saveGraphQLAddressAndChainID(
     String serviceURI,
     String chainID,
-    String microCowRootChainID,
-    String microCowApplicationID,
+    String rootChainID,
+    String applicationID,
   ) {
-    lineraPlayerChainID = chainID;
+    microCowPlayerChainID = chainID;
     graphQLServiceAddress = serviceURI;
-    cowRootChainID = microCowRootChainID;
-    cowApplicationID = microCowApplicationID;
+    microCowRootChainID = rootChainID;
+    microCowApplicationID = applicationID;
   }
 
   void userLoggedIn() {

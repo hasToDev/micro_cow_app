@@ -23,7 +23,7 @@ class _FarmPageState extends State<FarmPage> {
   void initState() {
     super.initState();
     controller = TextEditingController();
-    chainID = context.read<CowProvider>().lineraPlayerChainID;
+    chainID = context.read<CowProvider>().microCowPlayerChainID;
   }
 
   @override
@@ -728,7 +728,7 @@ class _FarmPageState extends State<FarmPage> {
 
   Future<void> _handleError(BuildContext context, String error) async {
     String err = error;
-    if (err.length > 100) err = error.substring(0, 100);
+    if (err.length > 200) err = error.substring(0, 200);
     if (context.mounted) Navigator.pop(context);
     await Future.delayed(const Duration(milliseconds: 100));
     if (context.mounted) DialogHelper.failures(context, err);

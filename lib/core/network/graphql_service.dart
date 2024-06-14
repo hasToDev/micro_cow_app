@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:micro_cow_app/main.dart';
 import 'linera_response_parser.dart';
@@ -37,7 +36,7 @@ class GraphQLService {
         if (err.contains('FormatException')) err = "invalid address";
         if (err.contains('ServerException')) {
           err =
-              "unable to connect, make sure you entered correct address, and allow Insecure Content on your browser setting if the address is served with HTTP protocol.";
+              "unable to connect, make sure you entered correct address, and allow Insecure Content on your browser setting if the address is served with HTTP protocol";
         }
 
         return (null, err);
@@ -78,7 +77,7 @@ class GraphQLService {
         if (err.contains('FormatException')) err = "invalid address";
         if (err.contains('ServerException')) {
           err =
-              "unable to connect, make sure you entered correct address, and allow Insecure Content on your browser setting if the address is served with HTTP protocol.";
+              "unable to connect, make sure you entered correct address, and allow Insecure Content on your browser setting if the address is served with HTTP protocol";
         }
 
         return (null, err);
