@@ -30,14 +30,15 @@ class GraphQLService {
 
       if (result.hasException) {
         String err = _errorHandling(result.exception!);
-        // TODO: DELETE THIS
-        print('performQuery:\n$err');
         if (err.contains(errNode) && err.contains(errRegister)) err = "app not registered";
         if (err.contains('Local node operation failed')) err = "Local node operation failed";
         if (err.contains('HandshakeException')) err = "unable to connect";
         if (err.contains('Failed host lookup')) err = "unable to connect";
-        if (err.contains('ServerException')) err = "unable to connect";
         if (err.contains('FormatException')) err = "invalid address";
+        if (err.contains('ServerException')) {
+          err =
+              "unable to connect, make sure you entered correct address, and allow Insecure Content on your browser setting if the address is served with HTTP protocol.";
+        }
 
         return (null, err);
       }
@@ -70,14 +71,15 @@ class GraphQLService {
 
       if (result.hasException) {
         String err = _errorHandling(result.exception!);
-        // TODO: DELETE THIS
-        print('performMutation:\n$err');
         if (err.contains(errNode) && err.contains(errRegister)) err = "app not registered";
         if (err.contains('Local node operation failed')) err = "Local node operation failed";
         if (err.contains('HandshakeException')) err = "unable to connect";
         if (err.contains('Failed host lookup')) err = "unable to connect";
-        if (err.contains('ServerException')) err = "unable to connect";
         if (err.contains('FormatException')) err = "invalid address";
+        if (err.contains('ServerException')) {
+          err =
+              "unable to connect, make sure you entered correct address, and allow Insecure Content on your browser setting if the address is served with HTTP protocol.";
+        }
 
         return (null, err);
       }

@@ -54,7 +54,7 @@ class _SettingPageState extends State<SettingPage> {
       applicationIDController.text = context.read<CowProvider>().cowApplicationID;
 
       // try fetch and load chain id
-      String storageChainID = context.read<CowProvider>().lineraChainID;
+      String storageChainID = context.read<CowProvider>().lineraPlayerChainID;
       if (storageChainID.isNotEmpty) {
         await checkOnInitState(context, addressController.text, storageChainID);
       }
@@ -105,6 +105,31 @@ class _SettingPageState extends State<SettingPage> {
                               textAlign: TextAlign.center,
                             ),
                           ],
+                        ),
+                      );
+                    }),
+                    Builder(builder: (context) {
+                      if (containerSize == 0) return const SizedBox();
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: SizedBox(
+                          height: 20,
+                          child: Wrap(
+                            children: [
+                              Text(
+                                'v$appVersion',
+                                style: context.style.bodySmall?.copyWith(
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.6,
+                                  // fontSize: 42,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),

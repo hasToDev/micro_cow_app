@@ -23,7 +23,7 @@ class _FarmPageState extends State<FarmPage> {
   void initState() {
     super.initState();
     controller = TextEditingController();
-    chainID = context.read<CowProvider>().lineraChainID;
+    chainID = context.read<CowProvider>().lineraPlayerChainID;
   }
 
   @override

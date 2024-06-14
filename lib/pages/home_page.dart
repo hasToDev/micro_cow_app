@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       if (kIsWeb || Platform.isWindows) {
         // try load storage
         bool firstLoad = context.read<CowProvider>().graphQLServiceAddress.isEmpty &&
-            context.read<CowProvider>().lineraChainID.isEmpty;
+            context.read<CowProvider>().lineraPlayerChainID.isEmpty;
 
         if (firstLoad) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();

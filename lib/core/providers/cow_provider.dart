@@ -12,7 +12,7 @@ class CowProvider extends ChangeNotifier {
   GraphQLClient? appClient;
 
   String graphQLServiceAddress = '';
-  String lineraChainID = '';
+  String lineraPlayerChainID = '';
   String cowRootChainID = '';
   String cowApplicationID = '';
   String lineraOwner = '';
@@ -29,26 +29,13 @@ class CowProvider extends ChangeNotifier {
     String uri = serviceURI;
     if (serviceURI.contains("localhost")) uri.replaceAll("localhost", "127.0.0.1");
     if (!serviceURI.contains("http://")) uri = 'http://$uri';
-    try {
-      client = GraphQLService.createGraphQlClient(uri);
-    } catch (e) {
-      // TODO: DELETE THIS
-      print('setup GraphQL Client:\n$e');
-      rethrow;
-    }
+    client = GraphQLService.createGraphQlClient(uri);
   }
 
   void setupGraphQLAppClient() {
-    String uri = '$graphQLServiceAddress/chains/$lineraChainID/applications/$applicationID';
+    String uri =
+        '$graphQLServiceAddress/chains/$lineraPlayerChainID/applications/$cowApplicationID';
     appClient = GraphQLService.createGraphQlClient(uri);
-
-    try {
-      appClient = GraphQLService.createGraphQlClient(uri);
-    } catch (e) {
-      // TODO: DELETE THIS
-      print('setup GraphQL App Client:\n$e');
-      rethrow;
-    }
   }
 
   void saveGraphQLAddressAndChainID(
@@ -57,7 +44,7 @@ class CowProvider extends ChangeNotifier {
     String microCowRootChainID,
     String microCowApplicationID,
   ) {
-    lineraChainID = chainID;
+    lineraPlayerChainID = chainID;
     graphQLServiceAddress = serviceURI;
     cowRootChainID = microCowRootChainID;
     cowApplicationID = microCowApplicationID;

@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
       if (kIsWeb || Platform.isWindows) {
         // try load storage
         bool firstLoad = context.read<CowProvider>().graphQLServiceAddress.isEmpty &&
-            context.read<CowProvider>().lineraChainID.isEmpty;
+            context.read<CowProvider>().lineraPlayerChainID.isEmpty;
 
         if (firstLoad) {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
 
                           bool settingIsEmpty =
                               context.read<CowProvider>().graphQLServiceAddress.isEmpty &&
-                                  context.read<CowProvider>().lineraChainID.isEmpty;
+                                  context.read<CowProvider>().lineraPlayerChainID.isEmpty;
                           if (settingIsEmpty) {
                             DialogHelper.failures(
                                 context, 'go to Wallet Setting to setup your wallet first.');
@@ -248,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // * Find Chain ID Index
       Chains c = Chains.fromJson(result!.data!['chains']);
-      String lineraChainID = context.read<CowProvider>().lineraChainID;
+      String lineraChainID = context.read<CowProvider>().lineraPlayerChainID;
       int indexOfChainID = c.list.indexOf(lineraChainID);
 
       // * return if Chain ID not found
@@ -387,9 +387,9 @@ class _LoginPageState extends State<LoginPage> {
     if (!context.mounted) return "context not mounted";
 
     Map<String, dynamic> variables = {
-      'targetChainId': rootChainID,
-      'applicationId': applicationID,
-      'chainId': context.read<CowProvider>().lineraChainID,
+      'targetChainId': context.read<CowProvider>().cowRootChainID,
+      'applicationId': context.read<CowProvider>().cowApplicationID,
+      'chainId': context.read<CowProvider>().lineraPlayerChainID,
     };
 
     // * mutation to request app from root chain

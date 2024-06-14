@@ -15,6 +15,7 @@ export 'core/core.dart';
 export 'helpers/helpers.dart';
 export 'widgets/widgets.dart';
 
+const String appVersion = '0.2.2';
 const String storedChainID = 'lineraChainID';
 const String storedRootChainID = 'lineraRootChainID';
 const String storedApplicationID = 'lineraApplicationID';

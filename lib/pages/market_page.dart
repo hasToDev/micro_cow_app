@@ -25,7 +25,7 @@ class _MarketPageState extends State<MarketPage> {
   void initState() {
     super.initState();
     controller = TextEditingController();
-    chainID = context.read<CowProvider>().lineraChainID;
+    chainID = context.read<CowProvider>().lineraPlayerChainID;
   }
 
   @override
